@@ -10,6 +10,6 @@ namespace BookingAppStore.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Author { get; set; }
-        public int Pice { get; set; }
+        public int Price { get; set; }
     }
 }
