@@ -18,6 +18,26 @@ namespace BookingAppStore.Controllers
 
             return View();
         }
+        
+        [HttpGet]
+        public ActionResult Buy(int id)
+        {
+            ViewBag.Books = id;
+
+            return View();
+        }
+
+        [HttpPost] // необходимо чтобы компилятор понял какой из двух запросов Buy  ему выполнять 
+        public string Buy(Purchase purchase)
+        {
+            purchase.Date = DateTime.Now;
+            //Добавляе информацию о покупке в бд
+            db.Purchases.Add(purchase);
+            //Сохраняем все изменения в бд
+            db.SaveChanges();
+
+            return "Спасибо " + purchase.Person + " за покупку";
+        }
 
         public ActionResult About()
         {
