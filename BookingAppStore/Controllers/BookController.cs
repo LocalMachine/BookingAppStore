@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookingAppStore.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -27,6 +28,18 @@ namespace BookingAppStore.Controllers
             return title + " " + author;
         }
 
+
+        public ActionResult GetHtml()
+        {
+            return new HtmlResult("<h2>Hello world!</h2>"); // не забыть добавить пространство имен
+        }
+
+        public ActionResult GetImage()
+        {
+            string path = "../Content/Images/download.jpg";
+
+            return new ImageResult(path);
+        }
 
         public string Square() // способ передачи не обязательных параметров
         {
