@@ -16,9 +16,20 @@ namespace BookingAppStore.Controllers
             var books = db.Books;
             ViewBag.Books = books;
 
-            return View();
+            ViewData["Head"] = "Hello Rachik jan, vonces brats?)"; // обычный обьект типа словаря (ключ=> значение)
+            ViewBag.Head2 = "Lavem, inch ka chka?"; // динамический обьект, можем определить любое содержимое. Аналогичный вариант как и ViewData. Если указать одинаковые названия то будет выводить послед вариант
+                                                    //Разница в том что, Нет необходимости в приведении типов для получения данных. 
+
+            ViewBag.Answer = new List<string>
+            {
+                "lavem", "shat lavem", "gehecik"
+            };
+
+            return View(); // по умолчанию будет выводиться представление Views/Home/Index (т.к. автоматом выполняется представление исходя из названия метода). 
+                           //Чтобы переопределить, достаточно будет передать названиме представления в результат метода View например: return View("About")
+                           // так же можем указать конкретный путь к представлению пример: return View("~/Views/Some/Index.cshtml")
         }
-        
+
         [HttpGet]
         public ActionResult Buy(int id)
         {

@@ -242,6 +242,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\Buy.cshtml" />
     <Content Include="Views\Book\GetBook.cshtml" />
+    <Content Include="Views\Some\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
