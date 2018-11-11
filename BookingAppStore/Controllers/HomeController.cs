@@ -14,6 +14,9 @@ namespace BookingAppStore.Controllers
 
         public ActionResult Index()
         {
+            HttpContext.Response.Cookies["id"].Value = "rgag"; // установили куку
+            Session["name"] = "Rach"; //установил сессию. Чтобы удалить сессию: Session["name"] = null
+
             var books = db.Books;
             ViewBag.Books = books;
 
@@ -115,6 +118,31 @@ namespace BookingAppStore.Controllers
 
             return File(fs, file_type, file_name);
         }
+
+        public string GetContext()
+        {
+            // HttpContext.Response.Write("Hello");с помощью свойства респонс
+            string browser = HttpContext.Request.Browser.Browser;
+            string user_agent = HttpContext.Request.UserAgent;
+            string url = HttpContext.Request.RawUrl;
+            string ip = HttpContext.Request.UserHostAddress;
+            string referrer = HttpContext.Request.UrlReferrer == null ? "" : HttpContext.Request.UrlReferrer.AbsoluteUri;
+
+            return "<p>Browser: " + browser + "</p>" +
+                    "<p>User-agent: " + user_agent + "</p>" +
+                    "<p>Url zaprosa: " + url + "</p>" +
+                    "<p>IP: " + ip + "</p>" +
+                    "<p>Referre: " + referrer + "</p>";
+        }
+
+        public string GetData() // получить сессию и куки
+        {
+            string id = HttpContext.Request.Cookies["id"].Value;
+            var session = Session["name"];
+
+            return id + "   " + session; 
+        }
+
     }
 
 }
