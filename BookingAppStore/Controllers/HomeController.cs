@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using BookingAppStore.Models;
+using System.Data.Entity;
 
 namespace BookingAppStore.Controllers
 {
     public class HomeController : Controller
     {
-        BookContext db = new BookContext();
+        BookContext db = new BookContext(); // определяем переменную контекста данных
+
 
         public ActionResult Index()
         {
@@ -29,9 +32,23 @@ namespace BookingAppStore.Controllers
                 "lavem", "shat lavem", "gehecik"
             };
 
+
+            IEnumerable<Book> i_books = db.Books.ToList(); //синхронный метод = если каждый запрос будет долгий(Нпр к бд), то сервис будет заморожен до тех пор пока не получит результат
+            ViewBag.i_Books = i_books;  
+
             return View(); // по умолчанию будет выводиться представление Views/Home/Index (т.к. автоматом выполняется представление исходя из названия метода). 
                            //Чтобы переопределить, достаточно будет передать названиме представления в результат метода View например: return View("About")
                            // так же можем указать конкретный путь к представлению пример: return View("~/Views/Some/Index.cshtml")
+        }
+
+        // асинхронный метод 
+        public async Task<ActionResult> BookList()
+        {
+            // необхордимо подклютить простр имен using System.Data.Entity;
+            IEnumerable<Book> i_books = await db.Books.ToListAsync(); //асинхронный метод = если каждый запрос будет долгий (Нпр к бд), то поток не ждет пока данные будут получены  а переключается на обработку других запросов
+            ViewBag.i_Books = i_books;
+
+            return View("Index");
         }
 
         [HttpGet]
