@@ -59,9 +59,22 @@ namespace BookingAppStore.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Your contact page."; 
 
             return View();
         }
+
+        public RedirectResult GetVoid()
+        {
+            return Redirect("/Home/Contact"); // постоянная переадресация  (RedirectPermanent - временная)
+            //return RedirectToRoute(new { conteoller = "Home", action = "Contact" });
+            //return RedirectToAction("Square","Home", new {a=10,h=5});  если метод находится в одном и том же контроллере то можно написать так RedirectToAction("Contact");
+        }
+
+        public ActionResult GetVoid2()
+        {          
+            return new HttpStatusCodeResult(404); // или  HttpNotFound() // или когда не авторизован HttpUnauthorizedResult
+        }
     }
+
 }
