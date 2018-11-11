@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -74,6 +75,45 @@ namespace BookingAppStore.Controllers
         public ActionResult GetVoid2()
         {          
             return new HttpStatusCodeResult(404); // или  HttpNotFound() // или когда не авторизован HttpUnauthorizedResult
+        }
+
+        public FilePathResult GetFile() // отправление файла из файловой системы
+        {
+            // путь к файлу
+            string file_path = Server.MapPath("~/Files/Пример.pdf");
+            // тип файла content-type
+            string file_type = "application/pdf";  // можно использовать универсанльныйтип файла (txt,docx,zip и тд) = "applicaton/octet-stream"
+            // имя файла - необязательно  
+            string file_name = "Пример.pdf";
+
+            return File(file_path, file_type, file_name);
+        }
+
+        public FileContentResult GetBytes() // отправление файла через массив байтов
+        {
+            // путь к файлу
+            string file_path = Server.MapPath("~/Files/Пример.pdf");
+            byte[] mas = System.IO.File.ReadAllBytes(file_path);
+            // тип файла content-type
+            string file_type = "application/pdf";
+            // имя файла - необязательно  
+            string file_name = "Пример.pdf";
+
+            return File(mas, file_type, file_name);
+        }
+
+        public FileStreamResult GetStream() // отправление файла через поток
+        {
+            // путь к файлу
+            string file_path = Server.MapPath("~/Files/Пример.pdf");
+            //
+            FileStream fs = new FileStream(file_path, FileMode.Open);
+            // тип файла content-type
+            string file_type = "application/pdf";
+            // имя файла - необязательно  
+            string file_name = "Пример.pdf";
+
+            return File(fs, file_type, file_name);
         }
     }
 
