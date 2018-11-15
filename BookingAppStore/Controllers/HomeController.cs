@@ -36,10 +36,30 @@ namespace BookingAppStore.Controllers
             IEnumerable<Book> i_books = db.Books.ToList(); //синхронный метод = если каждый запрос будет долгий(Нпр к бд), то сервис будет заморожен до тех пор пока не получит результат
             ViewBag.i_Books = i_books;  
 
-            return View(); // по умолчанию будет выводиться представление Views/Home/Index (т.к. автоматом выполняется представление исходя из названия метода). 
+            return View(books); // по умолчанию будет выводиться представление Views/Home/Index (т.к. автоматом выполняется представление исходя из названия метода). 
                            //Чтобы переопределить, достаточно будет передать названиме представления в результат метода View например: return View("About")
                            // так же можем указать конкретный путь к представлению пример: return View("~/Views/Some/Index.cshtml")
         }
+
+
+
+        public ActionResult BookIndex()
+        {
+            var books = db.Books;
+            ViewBag.Books = books;
+
+
+            IEnumerable<Book> i_books = db.Books.ToList(); //синхронный метод = если каждый запрос будет долгий(Нпр к бд), то сервис будет заморожен до тех пор пока не получит результат
+            ViewBag.i_Books = i_books;
+
+            return View(books); // по умолчанию будет выводиться представление Views/Home/Index (т.к. автоматом выполняется представление исходя из названия метода). 
+                                //Чтобы переопределить, достаточно будет передать названиме представления в результат метода View например: return View("About")
+                                // так же можем указать конкретный путь к представлению пример: return View("~/Views/Some/Index.cshtml")
+        }
+
+
+
+
 
         // асинхронный метод 
         public async Task<ActionResult> BookList()
