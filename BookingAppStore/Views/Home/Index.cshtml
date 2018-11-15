@@ -1,4 +1,9 @@
-﻿@using BookingAppStore.Models;
+﻿@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+@using BookingAppStore.Models;
 @model IEnumerable<Book>
 
 @{
@@ -36,3 +41,7 @@
         }
     </table>
 </div>
+
+@section Footer {    
+<h5>Все права защищены . Рачик. 2018.</h5>    
+    }

@@ -8,6 +8,7 @@
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
 </head>
 <body>
+    <h1>Layout 2 -  мастер страницы</h1>
     <nav>
         <ul class="menu">
             <li>@Html.ActionLink("Главная", "Index", "Home")</li>
@@ -16,15 +17,7 @@
     </nav>
     @RenderBody()
 
-    <footer>
-        @if (IsSectionDefined("Footer"))
-        {
-            @RenderSection("Footer")
-        }
-        else
-        {
-            <span>Футер, выводящий секцию по умолчанию</span>
-        }
-    </footer>
+    @*<footer>@RenderSection("Footer", false)</footer>*@
+    
 </body>
 </html>
