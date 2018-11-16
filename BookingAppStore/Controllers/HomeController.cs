@@ -32,6 +32,7 @@ namespace BookingAppStore.Controllers
                 "lavem", "shat lavem", "gehecik"
             };
 
+            ViewBag.Message = "message";
 
             IEnumerable<Book> i_books = db.Books.ToList(); //синхронный метод = если каждый запрос будет долгий(Нпр к бд), то сервис будет заморожен до тех пор пока не получит результат
             ViewBag.i_Books = i_books;  
@@ -179,6 +180,15 @@ namespace BookingAppStore.Controllers
 
             return id + "   " + session; 
         }
+
+        public ActionResult GetList()
+        {
+            string[] states = new string[] { "Russia", "Armenia", "Egypt", "Denmark" };
+
+            return PartialView(states);
+        }
+
+
 
     }
 
