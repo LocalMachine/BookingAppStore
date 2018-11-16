@@ -42,12 +42,57 @@
     </table>
 </div>
 
+
+
+@helper BookList(IEnumerable<Book> books)
+{
+    <ul>
+        @foreach (Book b in books)
+        {
+            <li>@b.Name</li>
+        }
+    </ul>
+}
+<h3>List books</h3>
+@BookList(Model)
+
+
+
+@*@helper CreateList(string[] all)
+{
+    <ul>
+        @foreach (string s in all)
+        {
+            <li>@s</li>
+        }
+    </ul>
+}*@
+@{
+    string[] city = new string[] { "London", "Moskow", "Yerevan" };
+}
+
+@{
+    string[] country = new string[] { "UK", "Russia", "Armenia" };
+}
+
+@using BookingAppStore.Helpers
+@Html.CreateList(city)
+
+
+@*<h3>CITY</h3>
+@CreateList(city)
+<br/>
+<h3>COUNTRY</h3>
+@CreateList(country)*@
+
+
+
 @*вывод частичных представлений (3)*@
-@Html.Action("GetList") 
+@*@Html.Action("GetList")*@
 @*@Html.Partial("GetList", new string[] { "Russia", "Armenia", "Egypt", "Denmark" })*@
 @*@{Html.RenderPartial("GetList");}*@
 
 
-@section Footer {    
-<h5>Все права защищены . Рачик. 2018.</h5>    
-    }
+@section Footer {
+    <h5>Все права защищены . Рачик. 2018.</h5>
+}
