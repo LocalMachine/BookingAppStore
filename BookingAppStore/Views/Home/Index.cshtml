@@ -58,15 +58,39 @@
 
 
 
-@*@helper CreateList(string[] all)
+
+@using (Html.BeginForm("GetForm", "Home", FormMethod.Post))
 {
-    <ul>
-        @foreach (string s in all)
-        {
-            <li>@s</li>
-        }
-    </ul>
-}*@
+    @*@Html.TextArea("text", "hello world", 5, 50, null)*@
+    @*@Html.RadioButton("color", "red")
+    <span>Red</span>
+    @Html.RadioButton("color", "blue")
+    <span>Blue</span>
+    @Html.RadioButton("color", "green", true)
+    <span>Green</span>*@
+    @*@Html.CheckBox("set",false)
+    <span>On</span>*@
+    @*@Html.DropDownList("author", ViewBag.Authors as SelectList)*@
+    @Html.ListBox("countries", new MultiSelectList(new string[] { "Denmark", "Georgia", "Serbia", "USA" }))
+
+    <input type="submit" value="Send" />
+}
+
+
+
+
+
+
+
+@*@helper CreateList(string[] all)
+    {
+        <ul>
+            @foreach (string s in all)
+            {
+                <li>@s</li>
+            }
+        </ul>
+    }*@
 @{
     string[] city = new string[] { "London", "Moskow", "Yerevan" };
 }
@@ -80,10 +104,10 @@
 
 
 @*<h3>CITY</h3>
-@CreateList(city)
-<br/>
-<h3>COUNTRY</h3>
-@CreateList(country)*@
+    @CreateList(city)
+    <br/>
+    <h3>COUNTRY</h3>
+    @CreateList(country)*@
 
 
 

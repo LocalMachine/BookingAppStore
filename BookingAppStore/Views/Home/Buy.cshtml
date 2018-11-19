@@ -5,18 +5,20 @@
 
 <div>
     <h3>Форма покупки книги</h3>
-    <form method="post">
-        <input type="hidden" name="BookId" value="@ViewBag.BookId" />
+    @using (Html.BeginForm("Buy", "Home", FormMethod.Post))
+    {
+        @*<input type="hidden" name="BookId" value="@ViewBag.BookId" />*@
+        @Html.Hidden("BookId", ViewBag.BookId as string)
         <table>
             <tr>
-                <td><p>Имя</p></td>
-                <td><input type="text" name="Person" /></td>
+                <td><p>@Html.Label("Person", "Введите имя")</p></td>
+                <td>@Html.TextBox("Person", "Введите имя")</td>
             </tr>
             <tr>
-                <td><p>Адрес</p></td>
-                <td><input type="text" name="Adress" /></td>
+                <td><p>@Html.Label("Address", "Введите адрес")</p></td>
+                <td>@Html.TextBox("Address", "Введите адрес")</td>
             </tr>
             <tr><td><input type="submit" value="Отправить" /></td><td></td></tr>
         </table>
-    </form>
+    }
 </div>

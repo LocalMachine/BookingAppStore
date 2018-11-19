@@ -35,7 +35,14 @@ namespace BookingAppStore.Controllers
             ViewBag.Message = "message";
 
             IEnumerable<Book> i_books = db.Books.ToList(); //синхронный метод = если каждый запрос будет долгий(Нпр к бд), то сервис будет заморожен до тех пор пока не получит результат
-            ViewBag.i_Books = i_books;  
+            ViewBag.i_Books = i_books;
+
+
+
+            SelectList authors = new SelectList(db.Books, "Author", "Name"); // (обьекты book , свойство значения, свойство отображения)
+            ViewBag.Authors = authors;
+
+
 
             return View(books); // по умолчанию будет выводиться представление Views/Home/Index (т.к. автоматом выполняется представление исходя из названия метода). 
                            //Чтобы переопределить, достаточно будет передать названиме представления в результат метода View например: return View("About")
@@ -186,6 +193,18 @@ namespace BookingAppStore.Controllers
             string[] states = new string[] { "Russia", "Armenia", "Egypt", "Denmark" };
 
             return PartialView(states);
+        }
+
+        [HttpPost]
+        public string GetForm(string[] countries) //text - если выбрать текст ареа, зависит от имени тега
+        {
+            string result = "";
+            foreach (string c in countries)
+            {
+                result += c;
+                result += ";";
+            }
+            return "Вы выбрали " + result;
         }
 
 
