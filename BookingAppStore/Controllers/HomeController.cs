@@ -83,8 +83,9 @@ namespace BookingAppStore.Controllers
         public ActionResult Buy(int id)
         {
             ViewBag.Books = id;
+            Purchase purchase = new Purchase { BookId = id, Person="unknown" };
 
-            return View();
+            return View(purchase);
         }
 
         [HttpPost] // необходимо чтобы компилятор понял какой из двух запросов Buy  ему выполнять 
