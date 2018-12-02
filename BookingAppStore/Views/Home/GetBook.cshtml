@@ -1,0 +1,13 @@
+﻿@model BookingAppStore.Models.Book
+
+@{
+    ViewBag.Title = "GetBook";
+}
+
+<h2>GetBook</h2>
+
+@Html.DisplayFor(m => m.Name) <br /> @*строго типизированный вариант хелпера, где m понмается как модель указанная в этом представлении*@
+@Html.Display("Author") <br />
+@Html.Display("Price") <br />
+
+@*@Html.DisplayForModel() @*хелпер который выводит сразу все свойства модели*@*@

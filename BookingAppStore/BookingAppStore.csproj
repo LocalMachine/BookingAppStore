@@ -254,6 +254,7 @@
     <Content Include="Views\Home\BookIndex.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\Home\GetList.cshtml" />
+    <Content Include="Views\Home\GetBook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

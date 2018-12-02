@@ -13,7 +13,7 @@
         <table>
             <tr>
                 <td><p>@Html.LabelFor(m => m.Person, "Введите имя")</p></td>
-                <td>@Html.TextBoxFor(m=>m.Person)</td>
+                <td>@Html.EditorFor(m => m.Person)</td>   @*шаблонный хелпер для редактирования свойства модели*@
             </tr>
             <tr>
                 <td><p>@Html.Label("Address", "Введите адрес")</p></td>

@@ -54,8 +54,6 @@ namespace BookingAppStore.Controllers
                            // так же можем указать конкретный путь к представлению пример: return View("~/Views/Some/Index.cshtml")
         }
 
-
-
         public ActionResult BookIndex()
         {
             var books = db.Books;
@@ -69,10 +67,6 @@ namespace BookingAppStore.Controllers
                                 //Чтобы переопределить, достаточно будет передать названиме представления в результат метода View например: return View("About")
                                 // так же можем указать конкретный путь к представлению пример: return View("~/Views/Some/Index.cshtml")
         }
-
-
-
-
 
         // асинхронный метод 
         public async Task<ActionResult> BookList()
@@ -213,7 +207,15 @@ namespace BookingAppStore.Controllers
             return "Вы выбрали " + result;
         }
 
-
+        public ActionResult GetBook(int id)
+        {
+            Book b = db.Books.Find(id);
+            if (b == null)
+            {
+                return HttpNotFound();
+            }
+            return View(b);
+        }
 
     }
 
