@@ -17,7 +17,12 @@ namespace BookingAppStore.Controllers
 
         public ActionResult Index()
         {
-            HttpContext.Response.Cookies["id"].Value = "rgag"; // установили куку
+            using (BookContext db2 = new BookContext()) //Анологичный вариант BookContext db = new BookContext(); -- единственное, необходимо будет во втором случае, уничтожать переменную с помощью метода Dispose()
+            {
+                var boooks = db2.Books; 
+            }
+
+                HttpContext.Response.Cookies["id"].Value = "rgag"; // установили куку
             Session["name"] = "Rach"; //установил сессию. Чтобы удалить сессию: Session["name"] = null
 
             var books = db.Books;
