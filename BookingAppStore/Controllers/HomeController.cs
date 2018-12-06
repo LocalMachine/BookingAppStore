@@ -217,6 +217,95 @@ namespace BookingAppStore.Controllers
             return View(b);
         }
 
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Book book)
+        {
+            db.Books.Add(book);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        
+        //public ActionResult Delete(int id)
+        //{
+        //    // в 2 запроса
+        //    Book b = db.Books.Find(id);
+        //    if (b != null)
+        //    {
+        //        db.Books.Remove(b); // delete in sql
+        //        db.SaveChanges();
+        //    }
+
+        //    // в 1 запрос
+        //    //Book b = new Book { Id = id };
+        //    //db.Entry(b).State = EntityState.Deleted;
+        //    //db.SaveChanges();
+
+        //    return RedirectToAction("Index");
+        //}
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            Book b = db.Books.Find(id);
+            if (b == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(b);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Book b = db.Books.Find(id);
+            if (b == null)
+            {
+                return HttpNotFound();
+            }
+            db.Books.Remove(b);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpGet]
+        public ActionResult Edit(int? id) // Вопросительный знак, значит что инт может быть null
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            Book book = db.Books.Find(id);
+
+            if (book != null)
+            {
+                return View(book);
+            }
+
+            return HttpNotFound();
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Book book)
+        {
+
+            db.Entry(book).State = EntityState.Modified;           
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+
     }
 
 }
