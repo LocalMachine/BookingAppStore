@@ -218,13 +218,13 @@ namespace BookingAppStore.Controllers
         }
 
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult CreateBook()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(Book book)
+        public ActionResult CreateBook(Book book)
         {
             db.Books.Add(book);
             db.SaveChanges();
@@ -279,7 +279,7 @@ namespace BookingAppStore.Controllers
 
 
         [HttpGet]
-        public ActionResult Edit(int? id) // Вопросительный знак, значит что инт может быть null
+        public ActionResult EditBook(int? id) // Вопросительный знак, значит что инт может быть null
         {
             if (id == null)
             {
@@ -296,7 +296,7 @@ namespace BookingAppStore.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Book book)
+        public ActionResult EditBook(Book book)
         {
 
             db.Entry(book).State = EntityState.Modified;           
